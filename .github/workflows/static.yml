@@ -27,15 +27,14 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    env:
-      WP_NO: ${{ vars.WHATSAPP_PHONE_NUMBER }}
+      WP: ${{ vars.WHATSAPP_PHONE_NUMBER }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Secret'ı HTML içine yaz
         run: |
-          sed -i 's|__WP__|$WP_NO|g' index.html
+          sed -i 's|__WP__|$WP|g' index.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
