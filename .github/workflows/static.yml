@@ -31,9 +31,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: DEBUG START
+        run: |
+          echo "Workflow başladı"
+          pwd
+          ls -la
+      - name: Secret var mı kontrol et
+        shell: bash
+        env:
+          MY_URL: ${{ secrets.WHATSAPP_PHONE_NUMBER }}
+        run: |
+          echo "Kontrol başlıyor"
+
+          if [ -z "$MY_URL" ]; then
+            echo "MY_URL boş geliyor"
+          else
+            echo "MY_URL dolu geliyor"
+          fi
       - name: Secret'ı HTML içine yaz
         run: |
-          sed -i 's|__WP__|${{ secrets.WHATSAPP-PHONE-NUMBER }}|g' index.html
+          sed -i 's|__WP__|${{ secrets.WHATSAPP_PHONE_NUMBER }}|g' index.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
