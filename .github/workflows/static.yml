@@ -46,7 +46,7 @@ jobs:
           if [ -z "$MY_URL" ]; then
             echo "MY_URL boş geliyor"
           else
-            echo "MY_URL dolu geliyor"
+            echo "$MY_URL dolu geliyor"
           fi
       - name: Secret'ı HTML içine yaz
         run: |
